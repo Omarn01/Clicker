@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Clicker</title>
+</head>
+<body>
+    
+    <div class="wrapper">
+
+        <div class="wrapper_block">
+            <div class="counter-block">
+                <p class="counter">0</p>
+            </div>
+    
+            <div class="buttons-block">
+    
+                <div class="click_block">
+                    <button class="button click">Click!</button>
+                </div>
+                    <div class="addition">
+                        <button class="button upgrade10">Upgrade, 10!</button>
+                        <button class="button upgrade50">Upgrade, 50!</button>
+                        <button class="button upgrade100">Upgrade, 100!</button>
+                    </div>
+
+                    <div class="async">
+                        <button class="button asyncUpgrade asyncUpgrade25">AsyncUpgrade, 25!</button>
+                        <button class="button asyncUpgrade asyncUpgrade50">AsyncUpgrade, 50!</button>
+                    </div>
+                    <form class="form">
+                        <input class="color_interface" type="color">
+                        <button class="color_interface_button">Подтвердить</button>
+                        <input class="color_font" type="color">
+                        <button class="color_font_button">Подтвердить</button>
+                        <button class="button reset">Сбросить настройки</button>
+                        <input type="text" class="user_color">
+                        <button class="user_color_button">Подтвердить</button>
+                        <input placeholder="Введите промокод" type="text" class="promo">
+                        <button class="promoButton">Ввести</button>
+                    </form>
+                    <button class="button statistics">Статистика</button>
+                    <div class="statisticsSubstrateModalShow hidden">
+                        <div class="statisticsModalShow">
+                            <span class="statisticsModalShowBack">X</span>
+                            <p class="allClicksSubheader">Всего кликов: 0</p>
+                            <p class="allUpgradeSubheader">Всего апгрейдов: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="notEnoughSubstrateModalShow hidden">
+                        <div class="notEnoughModalShow">
+                            <span class="notEnoughModalShowBack">X</span>
+                            <h1 class="notEnoughHeader">Недостаточно кликов!</h1>
+                            <h2 class="notEnoughSubheader"></р>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+
+  
+        </div>
+
+
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
