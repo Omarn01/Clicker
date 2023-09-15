@@ -9,11 +9,13 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     const counter = document.querySelector('.counter'),
           click = document.querySelector('.click'),
+          upgrades = document.querySelector('.upgrades'),
           upgrade10 = document.querySelector('.upgrade10'),
           upgrade50  = document.querySelector('.upgrade50'),
           upgrade100 = document.querySelector('.upgrade100'),
           asyncUpgrade25 = document.querySelector('.asyncUpgrade25'),
           asyncUpgrade50 = document.querySelector('.asyncUpgrade50'),
+          counterSubheader = document.querySelector('.counter_subheader'),
           colorInterface = document.querySelector('.color_interface'),
           colorInterfaceButton = document.querySelector('.color_interface_button'),
           colorFont = document.querySelector('.color_font'),
@@ -30,6 +32,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
           promoValue = [],
           promo = document.querySelector('.promo'),
           promoButton = document.querySelector('.promoButton'),
+          upgradesSubstrate = document.querySelector('.modal-window_upgradesSubstrate'),
+          upgradesBack = document.querySelector('.modal-window_upgradesBack'),
           notEnoughSubstrateModalShow = document.querySelector('.notEnoughSubstrateModalShow'),
           notEnoughModalShowBack = document.querySelector('.notEnoughModalShowBack'),
           notEnoughSubheader = document.querySelector('.notEnoughSubheader'),
@@ -39,11 +43,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     let count = 0,
         upgrade = 0,
-        allClicls = 0,
-        allUpgrade = 0
+        allClicks = 0,
+        allUpgrade = 0,
+        allAsyncUpgrade = 0,
+        clicksPerMinute = 0
 
 // Work Zone
-
+upgrades.addEventListener('click', () => {
+    modalWindow(upgradesSubstrate, upgradesBack)
+})
  
 
 
@@ -90,8 +98,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
             counter.textContent = count
 
             allUpgrade++
-            allUpgradeSubheader.textContent =  `Всего апгрейдов: ${allUpgrade}`
-        } else {
+            // allUpgradeSubheader.textContent =  `Всего апгрейдов: ${allUpgrade}`
+        }
+         else {
+            upgradesSubstrate.classList.add('hidden')
             modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
             notEnoughSubheader.textContent = `Кликов нужно: ${count1 - count}`
         }
@@ -103,11 +113,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
             button.setAttribute('disabled', 'disabled')
             count -= count1
             counter.textContent = count
+
             setInterval(() => {
                 count += add
                 counter.textContent = count
             }, speed)
-        } else {
+        } 
+        else {
+            upgradesSubstrate.classList.add('hidden')
             modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
             notEnoughSubheader.textContent = `Кликов нужно: ${count1 - count}`
         }
@@ -135,7 +148,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     })
     
     asyncUpgrade25.addEventListener('click', () => {
-        asyncUpgrade(asyncUpgrade25, 1, 3000, 25)
+        asyncUpgrade(asyncUpgrade25, 1, 1000, 25)
     })
 
     asyncUpgrade50.addEventListener('click', () => {
@@ -148,64 +161,64 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
 // Costomisation
 
-    colorInterfaceButton.addEventListener('click', e => {
-        e.preventDefault()
-        buttons.forEach((btn) => {
-            btn.style.backgroundColor = colorInterface.value  
-        })
-    })
+    // colorInterfaceButton.addEventListener('click', e => {
+    //     e.preventDefault()
+    //     buttons.forEach((btn) => {
+    //         btn.style.backgroundColor = colorInterface.value  
+    //     })
+    // })
 
-    userColorButton.addEventListener('click', e => {
-        e.preventDefault()
-        if (userColor.value) {
-            buttons.forEach((btn) => {
-                btn.style.backgroundColor = userColor.value
-            })
-        } else console.log('Неверно')
+    // userColorButton.addEventListener('click', e => {
+    //     e.preventDefault()
+    //     if (userColor.value) {
+    //         buttons.forEach((btn) => {
+    //             btn.style.backgroundColor = userColor.value
+    //         })
+    //     } else console.log('Неверно')
 
 
-    })
+    // })
 
-    colorFontButton.addEventListener('click', e => {
-        e.preventDefault()
-        buttons.forEach((btn) => {
-            btn.style.color = colorFont.value
-        })
-    })
+    // colorFontButton.addEventListener('click', e => {
+    //     e.preventDefault()
+    //     buttons.forEach((btn) => {
+    //         btn.style.color = colorFont.value
+    //     })
+    // })
 
-    reset.addEventListener('click', e => {
-        e.preventDefault()
-        buttons.forEach((btn) => {
-            btn.style.backgroundColor = 'rgb(40, 40, 182)'
-            btn.style.color = 'white'
-        })
-    })
+    // reset.addEventListener('click', e => {
+    //     e.preventDefault()
+    //     buttons.forEach((btn) => {
+    //         btn.style.backgroundColor = 'rgb(40, 40, 182)'
+    //         btn.style.color = 'white'
+    //     })
+    // })
 
     // Statistics 
-    statistics.addEventListener('click', () => {
-        modalWindowClick(statisticsSubstrateModalShow, statisticsModalShowBack)
-    })
+    // statistics.addEventListener('click', () => {
+    //     modalWindowClick(statisticsSubstrateModalShow, statisticsModalShowBack)
+    // })
         // Promo
-        promoButton.addEventListener('click', e => {
-            e.preventDefault()
+        // promoButton.addEventListener('click', e => {
+        //     e.preventDefault()
 
-            if (promo.value === 'KSNDknDkjaMjls') {
-                if (promoValue.includes('KSNDknDkjaMjls')) {
-                    console.log('Вы уже вводили этот промокод!')
-                    modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
-                    notEnoughHeader.textContent = 'Вы уже вводили этот промокод!'
-                } else {
-                    promoValue.push(promo.value)
-                    count += 50;
-                    counter.textContent = count
-                }
+        //     if (promo.value === 'KSNDknDkjaMjls') {
+        //         if (promoValue.includes('KSNDknDkjaMjls')) {
+        //             console.log('Вы уже вводили этот промокод!')
+        //             modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
+        //             notEnoughHeader.textContent = 'Вы уже вводили этот промокод!'
+        //         } else {
+        //             promoValue.push(promo.value)
+        //             count += 50;
+        //             counter.textContent = count
+        //         }
 
-            } else if (promo.value != 'KSNDknDkjaMjls') {
-                modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
-                notEnoughHeader.textContent = 'Неправильный промокод!'
-            }
-            promo.value = ''
-        })
+        //     } else if (promo.value != 'KSNDknDkjaMjls') {
+        //         modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
+        //         notEnoughHeader.textContent = 'Неправильный промокод!'
+        //     }
+        //     promo.value = ''
+        // })
 
 
 
@@ -216,8 +229,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
         count += upgrade
         counter.textContent = count
 
-        allClicls++
-        allClicksSubheader.textContent = `Всего кликов: ${allClicls}`
+
+        allClicks++
+        // allClicksSubheader.textContent = `Всего кликов: ${allClicks}`
     })
 
 })

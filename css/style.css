@@ -7,16 +7,12 @@ body {
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    margin: 0;
+    padding: 0
 }
 
 .wrapper {
     min-height: 100vh;
-    max-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-wrap: wrap;
     overflow: hidden;
     font-family: 'Lato', sans-serif;
     font-weight: 700;
@@ -90,7 +86,7 @@ button:hover {
     height: 100%;
     z-index: 9998;
     position: absolute;
-    top: 13px;
+    top: 0px;
     left: 0;
 }
 .statisticsModalShow {
@@ -109,7 +105,7 @@ button:hover {
     color: rgb(217, 21, 21);
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 0px;
     z-index: 9999;
 }
 .notEnoughSubstrateModalShow {
@@ -118,7 +114,7 @@ button:hover {
     height: 100%;
     z-index: 9998;
     position: absolute;
-    top: 13px;
+    top: 0;
     left: 0;
 }
 .notEnoughModalShow {
@@ -126,8 +122,9 @@ button:hover {
     height: 300px;
     background-color: gainsboro;
     position: absolute;
-    top: 20%;
-    right: 35%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 5px;
     z-index: 9999; 
     text-align: center;

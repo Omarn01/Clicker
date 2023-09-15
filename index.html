@@ -5,13 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
     <title>Clicker</title>
 </head>
 <body>
-    
+
     <div class="wrapper">
 
-        <div class="wrapper_block">
+            <div class="modal-window_upgradesSubstrate hidden">
+                <div class="modal-window_upgrades">
+                    <span class="modal-window_upgradesBack">X</span>
+                    <div class="upgrades-block">
+                        <h2 class="upgrades-block_subheader">Upgrades:</h2>
+                        <ul class="upgrades-block_list">
+                            <li class="upgrades-block_item">
+                                <button class="button upgrade10">Upgrade, 10!</button>
+                            </li>
+                            <li class="upgrades-block_item">
+                                <button class="button upgrade50">Upgrade, 50!</button>
+                            </li>
+                            <li class="upgrades-block_item">
+                                <button class="button upgrade100">Upgrade, 100!</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="upgrades-block">
+                        <h2 class="upgrades-block-Async_subheader">AsyncUpgrades:</h2>
+                        <ul class="upgrades-block-Async_list">
+                            <li class="upgrades-block_item">
+                                <button class="button asyncUpgrade asyncUpgrade25">AsyncUpgrade, 25!</button>
+                            </li>
+                            <li class="upgrades-block_item">
+                                <button class="button asyncUpgrade asyncUpgrade50">AsyncUpgrade, 50!</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        <section class="admin">
+            <ul class="admin_list">
+                <li class="admin_item">
+                    <button class="button buttonAdmin upgrades">Upgrades</button>
+                </li>
+                <li class="admin_item">
+                    <button class="button buttonAdmin settings">Settings</button>
+                </li>
+            </ul>
+        </section>
+
+
+
+        <section class="home">
+            <div class="home_block">
+
+                <div class="home_top">
+                    <p class="counter">0</p>
+                    <h5 class="counter_subheader">Кликов в секунду: +0</h5>
+                </div>
+
+                <div class="home_down">
+                    <button class="button click">Click!</button>
+                </div>
+
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <div class="wrapper_block">
             <div class="counter-block">
                 <p class="counter">0</p>
             </div>
@@ -21,16 +109,7 @@
                 <div class="click_block">
                     <button class="button click">Click!</button>
                 </div>
-                    <div class="addition">
-                        <button class="button upgrade10">Upgrade, 10!</button>
-                        <button class="button upgrade50">Upgrade, 50!</button>
-                        <button class="button upgrade100">Upgrade, 100!</button>
-                    </div>
-
-                    <div class="async">
-                        <button class="button asyncUpgrade asyncUpgrade25">AsyncUpgrade, 25!</button>
-                        <button class="button asyncUpgrade asyncUpgrade50">AsyncUpgrade, 50!</button>
-                    </div>
+                    
                     <form class="form">
                         <input class="color_interface" type="color">
                         <button class="color_interface_button">Подтвердить</button>
@@ -50,7 +129,7 @@
                             <p class="allUpgradeSubheader">Всего апгрейдов: 0</p>
                         </div>
                     </div>
-
+                -->
                     <div class="notEnoughSubstrateModalShow hidden">
                         <div class="notEnoughModalShow">
                             <span class="notEnoughModalShowBack">X</span>
@@ -58,11 +137,11 @@
                             <h2 class="notEnoughSubheader"></р>
                         </div>
                     </div>
-                </div>    
+                <!-- </div>    
             </div>
 
   
-        </div>
+        </div>  -->
 
 
 
