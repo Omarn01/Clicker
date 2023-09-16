@@ -11,7 +11,9 @@
 <body>
 
     <div class="wrapper">
+        <!-- MODAL WINDOW -->
 
+            <!-- MODAL WINDOW UPGRADES! -->
             <div class="modal-window_upgradesSubstrate hidden">
                 <div class="modal-window_upgrades">
                     <span class="modal-window_upgradesBack">X</span>
@@ -41,25 +43,90 @@
                         </ul>
                     </div>
                 </div>
-
-
-
+            </div>
+  
+            <!-- MODAL WINDOW NOTENOUGH -->
+            <div class="notEnoughSubstrateModalShow hidden">
+                <div class="notEnoughModalShow">
+                    <span class="notEnoughModalShowBack">X</span>
+                    <span class="notEnoughModalShowClose">Назад</span>
+                    <h1 class="notEnoughHeader">Недостаточно кликов!</h1>
+                    <h2 class="notEnoughSubheader"></р>
+                </div>
             </div>
 
-        <section class="admin">
+            <!-- MODAL WINDOW WRONGPROMO -->
+            <div class="modal-window_wrongPromoSubstrate hidden">
+                <div class="modal-window_wrongPromo">
+                    <span class="wrongPromoBack">X</span>
+                    <h1 class="wrongPromoHeader">Неправильный промокод!</h1>
+                </div>
+            </div>
+
+            <!-- MODAL WINDIW DESIGN -->
+            <div class="modal-window_designSubstrate hidden">
+                <div class="modal-window_design">
+                    <span class="modal-window_designBack">X</span>
+                    <form class="form">
+                        <input class="color_interface" type="color">
+                        <button class="color_interface_button">Подтвердить</button>
+                        <input class="color_font" type="color">
+                        <button class="color_font_button">Подтвердить</button>
+                        <button class="button reset">Сбросить настройки</button>
+                        <input type="text" class="user_color">
+                        <button class="user_color_button">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MODAL WINDOW STATISTICS -->
+            <div class="modal-window_statisticsSubstrate hidden">
+                <div class="modal-window_statistics">
+                    <span class="statisticsBack">X</span>
+                    <p class="allClicksSubheader">Всего кликов: 0</p>
+                    <p class="allUpgradeSubheader">Всего апгрейдов: 0</p>
+                </div>
+            </div>
+
+            <!-- MODAL WINDOW SETTINGS -->
+            <!-- <div class="modal-window_settingsSubstrate hidden">
+                <div class="modal-window_settings">
+                    <span class="settingsBack">X</span>
+                    <form class="form">
+                        <input placeholder="Введите промокод" type="text" class="promo">
+                        <button class="promoButton">Ввести</button>
+                    </form>
+                </div>
+            </div> -->
+
+            <!-- MODAL WINDOW SETTINGS 2.0 -->
+            <div class="modal-window_settingsSubstrate hidden">
+                <div class="modal-window_settings">
+                    <span class="settingsBack">X</span>
+                    <h1>В разработке&#41;</h1>
+                </div>
+            </div>
+
+        <aside class="admin">
             <ul class="admin_list">
                 <li class="admin_item">
                     <button class="button buttonAdmin upgrades">Upgrades</button>
                 </li>
                 <li class="admin_item">
+                    <button class="button buttonAdmin design">Design</button>
+                </li>
+                <li class="admin_item">
+                    <button class="button buttonAdmin statistics">Statistics</button>
+                </li>
+                <li class="admin_item">
                     <button class="button buttonAdmin settings">Settings</button>
                 </li>
             </ul>
-        </section>
+        </aside>
 
 
 
-        <section class="home">
+        <main class="home">
             <div class="home_block">
 
                 <div class="home_top">
@@ -69,82 +136,11 @@
 
                 <div class="home_down">
                     <button class="button click">Click!</button>
+                    <p class="clicks-for-one-click">+1</p>
                 </div>
 
             </div>
-        </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- <div class="wrapper_block">
-            <div class="counter-block">
-                <p class="counter">0</p>
-            </div>
-    
-            <div class="buttons-block">
-    
-                <div class="click_block">
-                    <button class="button click">Click!</button>
-                </div>
-                    
-                    <form class="form">
-                        <input class="color_interface" type="color">
-                        <button class="color_interface_button">Подтвердить</button>
-                        <input class="color_font" type="color">
-                        <button class="color_font_button">Подтвердить</button>
-                        <button class="button reset">Сбросить настройки</button>
-                        <input type="text" class="user_color">
-                        <button class="user_color_button">Подтвердить</button>
-                        <input placeholder="Введите промокод" type="text" class="promo">
-                        <button class="promoButton">Ввести</button>
-                    </form>
-                    <button class="button statistics">Статистика</button>
-                    <div class="statisticsSubstrateModalShow hidden">
-                        <div class="statisticsModalShow">
-                            <span class="statisticsModalShowBack">X</span>
-                            <p class="allClicksSubheader">Всего кликов: 0</p>
-                            <p class="allUpgradeSubheader">Всего апгрейдов: 0</p>
-                        </div>
-                    </div>
-                -->
-                    <div class="notEnoughSubstrateModalShow hidden">
-                        <div class="notEnoughModalShow">
-                            <span class="notEnoughModalShowBack">X</span>
-                            <h1 class="notEnoughHeader">Недостаточно кликов!</h1>
-                            <h2 class="notEnoughSubheader"></р>
-                        </div>
-                    </div>
-                <!-- </div>    
-            </div>
-
-  
-        </div>  -->
-
-
-
+        </main>
     </div>
 
     <script src="js/script.js"></script>
