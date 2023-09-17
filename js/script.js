@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', (e) => {
     e.preventDefault()
 
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener('keydown', event => {
         if (event.key == 'Enter') {
             click.blur()
         }
@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const counter = document.querySelector('.counter'),
           click = document.querySelector('.click'),
           clicksForOneClick = document.querySelector('.clicks-for-one-click'),
+          buyPreviousUpgradeSubstrate = document.querySelector('.modal-window_buyPreviousUpgradeSubstrate'),
+          buyPreviousUpgradeBack = document.querySelector('.buyPreviousUpgradeBack'),
           upgrades = document.querySelector('.upgrades'),
           upgrade10 = document.querySelector('.upgrade10'),
           upgrade50  = document.querySelector('.upgrade50'),
@@ -24,6 +26,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
           reset = document.querySelector('.reset'),
           userColor = document.querySelector('.user_color'),
           userColorButton = document.querySelector('.user_color_button'),
+          wrongColor = document.querySelector('.wrongColor'),
+          wrongForm = document.querySelector('.wrongForm'),
           buttons = document.querySelectorAll('button'),
           statistics = document.querySelector('.statistics'),
           allClicksSubheader = document.querySelector('.allClicksSubheader'),
@@ -33,21 +37,28 @@ window.addEventListener('DOMContentLoaded', (e) => {
           designSubstrate = document.querySelector('.modal-window_designSubstrate'),
           statisticsSubstrate = document.querySelector('.modal-window_statisticsSubstrate'),
           statisticsBack = document.querySelector('.statisticsBack'),
+          achievementProgress = document.querySelector('.achievement_progress'),
+          achievementItem = document.querySelector('.achievement_item'),
           wrongPromoSubstrate = document.querySelector('.modal-window_wrongPromoSubstrate'),
           wrongPromoBack = document.querySelector('.wrongPromoBack'),
           promoValue = [],
           promo = document.querySelector('.promo'),
           promoButton = document.querySelector('.promoButton'),
+          repitionPromoSubstrate = document.querySelector('.modal-window_repitionPromoSubstrate'),
+          repitionPromoBack = document.querySelector('.repitionPromoBack'),
           settingsSubstrate = document.querySelector('.modal-window_settingsSubstrate'),
           settingsBack = document.querySelector('.settingsBack'),
           settings = document.querySelector('.settings'),
+          achievements = document.querySelector('.achievements'),
+          achievementaSubstrate = document.querySelector('.modal-window_achievementaSubstrate'),
+          achievementsBack = document.querySelector('.achievementsBack'),
           upgradesSubstrate = document.querySelector('.modal-window_upgradesSubstrate'),
           upgradesBack = document.querySelector('.modal-window_upgradesBack'),
           notEnoughSubstrateModalShow = document.querySelector('.notEnoughSubstrateModalShow'),
           notEnoughModalShowBack = document.querySelector('.notEnoughModalShowBack'),
           notEnoughModalShowClose = document.querySelector('.notEnoughModalShowClose'),
           notEnoughSubheader = document.querySelector('.notEnoughSubheader'),
-          notEnoughHeader = document.querySelector('.notEnoughHeader')
+          promocode = 'KSNDknDkjaMjls'
 
 
 
@@ -56,13 +67,23 @@ window.addEventListener('DOMContentLoaded', (e) => {
         allClicks = 0,
         allUpgrade = 0,
         allAsyncUpgrade = 0,
-        clicksPerMinute = 0
+        clicksPerMinute = 0,
+        badEventInterval = Math.round(Math.random() * (100_000 - 36_000))
 
 // Work Zone
 
- 
+const badEvent = (interval) => {
+    setInterval(() => {
+        quantity = (count / 100) * Math.round(Math.random() * (11 - 1))
+        count -= Math.round(quantity)
+        counter.textContent = count
+    }, interval)
+}
 
+badEvent(badEventInterval)
+// goodEvent(10000, goodEventCount())
 
+// goodEvent(goodEventInterval())
 // Function
 
     const windowClickModalWindow = (substrateModal, substrateModal2 = substrateModal) => {
@@ -158,23 +179,30 @@ window.addEventListener('DOMContentLoaded', (e) => {
     upgrade50.addEventListener('click', () => {
 
         if (upgrade10.hasAttribute('disabled')) {examinationUpgrade(upgrade50, 50, 1)}
-        else console.log('Купите сначала upgrade10!')
+        else modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
 
     })
 
     upgrade100.addEventListener('click', () => {
 
-        if (upgrade50.hasAttribute('disabled')) {examinationUpgrade(upgrade100, 100, 2)}
-        else console.log('Купите сначала upgrade50!')
+        if (upgrade50.hasAttribute('disabled')) examinationUpgrade(upgrade100, 100, 2)
+        else modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
 
     })
     
     asyncUpgrade25.addEventListener('click', () => {
-        asyncUpgrade(asyncUpgrade25, 1, 1000, 25)
+        asyncUpgrade(asyncUpgrade25, 1, 2000, 25)
     })
 
     asyncUpgrade50.addEventListener('click', () => {
         asyncUpgrade(asyncUpgrade50, 1, 2000, 50)
+        if (asyncUpgrade25.hasAttribute('disabled')) {asyncUpgrade(asyncUpgrade50, 1, 1000, 50)}
+        else {
+            notEnoughSubstrateModalShow.classList.add('hidden')
+            modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+
+        }
+
     })
 
     // Admin Menu
@@ -182,8 +210,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
         modalWindow(upgradesSubstrate, upgradesBack)
     })
 
-    design.addEventListener('click', () => {
+    design.addEventListener('click', e => {
         modalWindow(designSubstrate, designBack)
+        if (e.key == 'Enter') {
+            design.blur()
+        }
     })
 
     statistics.addEventListener('click', () => {
@@ -195,12 +226,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         modalWindow(settingsSubstrate, settingsBack)
     })
+
+    achievements.addEventListener('click', () => {
+        modalWindow(achievementaSubstrate, achievementsBack)
+    })
 // Modal Window
 
 
 
-// Costomisation
-
+    // Design
     colorInterfaceButton.addEventListener('click', e => {
         e.preventDefault()
         buttons.forEach((btn) => {
@@ -210,11 +244,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     userColorButton.addEventListener('click', e => {
         e.preventDefault()
+
         if (userColor.value) {
             buttons.forEach((btn) => {
                 btn.style.backgroundColor = userColor.value
             })
-        } else console.log('Неверно')
+            wrongColor.classList.add('hidden')
+            userColor.classList.remove('red_border')
+        } 
+        if (userColor.value.match(/#[a-f0-9]{6}\b|#[a-f0-9]{3}\b|rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$|rgba\((\s*\d+\s*,){3}[\d\.]+\)/gi) === null) {
+            userColor.classList.add('red_border')
+            wrongColor.classList.remove('hidden')
+        }
 
 
     })
@@ -233,28 +274,49 @@ window.addEventListener('DOMContentLoaded', (e) => {
             btn.style.color = 'white'
         })
     })
-        // Promo
-        // promoButton.addEventListener('click', e => {
-        //     e.preventDefault()
 
-        //     if (promo.value === 'KSNDknDkjaMjls') {
-        //         if (promoValue.includes('KSNDknDkjaMjls')) {
-        //             console.log('Вы уже вводили этот промокод!')
-        //             modalWindow(notEnoughSubstrateModalShow, notEnoughModalShowBack)
-        //             notEnoughHeader.textContent = 'Вы уже вводили этот промокод!'
-        //         } else {
-        //             promoValue.push(promo.value)
-        //             count += 50;
-        //             counter.textContent = count
-        //         }
+    userColorButton.addEventListener('click', () => {
 
-        //     } else if (promo.value != 'KSNDknDkjaMjls') {
-        //         designSubstrate.classList.add('hidden')
-        //         modalWindow(wrongPromoSubstrate, wrongPromoBack)
-        //     }
-        //     promo.value = ''
-        // })
+    })
 
+    // Promo
+    promoButton.addEventListener('click', e => {
+        e.preventDefault()
+
+        if (promo.value === promocode) {
+            if (promoValue.includes(promocode)) {
+                settingsSubstrate.classList.add('hidden')
+                modalWindow(repitionPromoSubstrate, repitionPromoBack)
+            } else {
+                promoValue.push(promo.value)
+                count += 50;
+                counter.textContent = count
+                settingsSubstrate.classList.add('hidden')
+            }
+
+        } else if (promo.value != promocode) {
+            settingsSubstrate.classList.add('hidden')
+            modalWindow(wrongPromoSubstrate, wrongPromoBack)
+        }
+        promo.value = ''
+    })
+
+    //   This is BAD
+ const achievementsFunction = item => {
+    if (count >= 200) {
+        if (!item.classList.contains('opacity')) {
+            item.classList.add('border-green')
+        }
+    }
+ }
+ achievementItem.addEventListener('click', () => {
+    if (achievementItem.classList.contains('border-green')) {
+        count += 100
+        counter.textContent = count
+        achievementItem.classList.remove('border-green')
+        achievementItem.classList.add('opacity')
+    }
+ })
 
 
 // Click
@@ -267,6 +329,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         allClicks++
         allClicksSubheader.textContent = `Всего кликов: ${allClicks}`
+
+        achievementProgress.textContent = `${count}/200`
+        achievementsFunction(achievementItem)
     })
 
 })

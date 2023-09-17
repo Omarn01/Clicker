@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap')
-    
+::-webkit-scrollbar 
+    width: 0
 body
     overflow: hidden
     -moz-user-select: -moz-none
@@ -9,7 +10,11 @@ body
     user-select: none
     margin: 0
     padding: 0
-    
+.modal-window_designSubstrate::-webkit-scrollbar 
+    width: 0
+input
+    border: none
+    outline: none
 .wrapper
     display: grid
     grid-template-columns: 1fr 11fr
@@ -19,8 +24,17 @@ body
     font-weight: 700
 
     background-color: #4F4F4F // #8b8b83 
-
-
+.red_border
+    border-radius: 3px
+    border: 3px solid red
+.red 
+    color: red
+.wrongColor
+    margin-bottom: 0
+    margin-top: -10px
+ul
+    list-style: none
+    text-align: left
 button
     text-decoration: none
     background-color: rgb(40, 40, 182)
@@ -34,6 +48,23 @@ button
     &:disabled 
         opacity: .55
 
+.achievement
+    &_list
+        margin-left: -48px
+        margin-top: 50px
+    &_item
+        display: flex
+        justify-content: space-between
+        border: 2px solid #1C1C1C
+        width: 100%
+        padding: 3px
+.achievement_band
+    display: flex
+    justify-content: space-between
+    gap: 20px
+
+.border-green 
+    box-shadow: 1px 3px 5px 3px green
 
 
 .admin
@@ -49,6 +80,9 @@ button
         padding-inline-start: 0
     &_item
         margin-bottom: 10px
+
+.opacity
+    opacity: .2
 
 
 .home 
@@ -128,8 +162,27 @@ button
         top: 5px
         z-index: 9999
 
-
-
+    &_achievementaSubstrate
+        background-color: rgba(0, 0, 0, .6)
+        width: 100%
+        height: 100%
+        z-index: 9998
+        position: absolute
+        top: 0
+        left: 0
+    &_achievements
+        padding: 10px
+        width: 500px
+        height: 300px
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        border-radius: 5px
+        z-index: 9999
+        text-align: center
+        background-color: gray
+        overflow: hidden
 
     &_designSubstrate
         background-color: rgba(0, 0, 0, .6)
@@ -141,7 +194,7 @@ button
         left: 0
     &_design
         width: 500px
-        height: 300px
+        height: 350px
         position: absolute
         top: 50%
         left: 50%
@@ -150,6 +203,7 @@ button
         z-index: 9999
         text-align: center
         background-color: gray
+        overflow: scroll
     &_designBack
         cursor: pointer
         font-size: 30px
@@ -218,12 +272,75 @@ button
         z-index: 9999
         text-align: center
         background-color: gray   
+    &_repitionPromoSubstrate
+        background-color: rgba(0, 0, 0, .6)
+        width: 100%
+        height: 100%
+        z-index: 9998
+        position: absolute
+        top: 0
+        left: 0 
+    &_repitionPromo
+        width: 500px
+        height: 300px
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        border-radius: 5px
+        z-index: 9999
+        text-align: center
+        background-color: gray 
+    &_buyPreviousUpgradeSubstrate
+        // background-color: rgba(0, 0, 0, .6)
+        width: 100%
+        height: 100%
+        z-index: 9998
+        position: absolute
+        top: 0
+        left: 0 
+    &_buyPreviousUpgrade
+        width: 500px
+        height: 300px
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        border-radius: 5px
+        z-index: 9999
+        text-align: center
+        background-color: gray 
+
+.buyPreviousUpgradeBack                
+    cursor: pointer
+    font-size: 30px
+    color: rgb(217, 21, 21)
+    position: absolute
+    right: 5px
+    top: 5px
+    z-index: 9999 
+.achievementsBack
+    cursor: pointer
+    font-size: 30px
+    color: rgb(217, 21, 21)
+    position: absolute
+    right: 5px
+    top: 5px
+    z-index: 9999  
+.repitionPromoBack
+    cursor: pointer
+    font-size: 30px
+    color: rgb(217, 21, 21)
+    position: absolute
+    right: 5px
+    top: 5px
+    z-index: 9999  
 .settingsBack
     cursor: pointer
     font-size: 30px
     color: rgb(217, 21, 21)
     position: absolute
-    left: 5px
+    right: 5px
     top: 5px
     z-index: 9999  
 .notEnoughModalShowClose 
@@ -273,6 +390,22 @@ button
         &_statistics
             width: 380px
             height: 220px
+
+        &_settings
+            width: 380px
+            height: 220px
+        &_repitionPromo
+            width: 380px
+            height: 220px
+        &_achievements
+            width: 380px
+            height: 220px
+    .achievementsBack
+        font-size: 20px
+    .repitionPromoBack
+        font-size: 20px
+    .settingsBack
+        font-size: 25px
     .statisticsBack
         font-size: 30px
     .wrongPromoHeader
@@ -315,6 +448,22 @@ button
         &_statistics
             width: 320px
             height: 180px
+
+        &_settings
+            width: 320px
+            height: 180px
+        &_repitionPromo
+            width: 320px
+            height: 180px
+        &_achievements
+            width: 310px
+            height: 180px
+    .achievementsBack
+        font-size: 20px
+    .repitionPromoBack
+        font-size: 20px
+    .settingsBack
+        font-size: 20px
     .statisticsBack
         font-size: 25px
     .wrongPromoHeader
@@ -376,6 +525,25 @@ button
         &_statistics
             width: 280px
             height: 150px
+
+        &_settings
+            width: 280px
+            height: 150px
+        &_designBack
+            font-size: 15px
+        &_repitionPromo
+            width: 280px
+            height: 150px
+        &_achievements
+            width: 280px
+            height: 150px
+            font-size: 12px
+    .achievementsBack
+        font-size: 20px
+    .repitionPromoBack
+        font-size: 20px
+    .settingsBack
+        font-size: 20px
     .statisticsBack
         font-size: 20px
     

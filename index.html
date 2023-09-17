@@ -68,13 +68,30 @@
                 <div class="modal-window_design">
                     <span class="modal-window_designBack">X</span>
                     <form class="form">
-                        <input class="color_interface" type="color">
-                        <button class="color_interface_button">Подтвердить</button>
-                        <input class="color_font" type="color">
-                        <button class="color_font_button">Подтвердить</button>
-                        <button class="button reset">Сбросить настройки</button>
-                        <input type="text" class="user_color">
-                        <button class="user_color_button">Подтвердить</button>
+                        <ul class="form_list">
+                            <li class="form_item">
+                                <p>Изменить цвет интерфейса:</p>
+                                <input class="color_interface" type="color">
+                                <button class="color_interface_button">Подтвердить</button>
+                            </li>
+                            <li class="form_item">
+                                <p>Изменить цвет шрифта:</p>
+                                <input class="color_font" type="color">
+                                <button class="color_font_button">Подтвердить</button>
+                            </li>
+                            <li class="form_item">
+                                <p>Свой цвет (через #):</p>
+                                <h6 class="wrongColor hidden red">Неправильный цвет!</h6>
+                                <h6 class="wrongFormat hidden red">Цвет должен начинаться с #!</h6>
+                                <input type="text" class="user_color">
+                                <button class="user_color_button">Подтвердить</button>
+                            </li>
+                            <li class="form_item">
+                                <button class="button reset">Сбросить настройки</button>
+                            </li>
+                        </ul>
+
+
                     </form>
                 </div>
             </div>
@@ -89,7 +106,7 @@
             </div>
 
             <!-- MODAL WINDOW SETTINGS -->
-            <!-- <div class="modal-window_settingsSubstrate hidden">
+            <div class="modal-window_settingsSubstrate hidden">
                 <div class="modal-window_settings">
                     <span class="settingsBack">X</span>
                     <form class="form">
@@ -97,13 +114,37 @@
                         <button class="promoButton">Ввести</button>
                     </form>
                 </div>
-            </div> -->
+            </div>
 
-            <!-- MODAL WINDOW SETTINGS 2.0 -->
-            <div class="modal-window_settingsSubstrate hidden">
-                <div class="modal-window_settings">
-                    <span class="settingsBack">X</span>
-                    <h1>В разработке&#41;</h1>
+            <!-- MODAL WINDOW REPITION PROMO -->
+            <div class="modal-window_repitionPromoSubstrate hidden">
+                <div class="modal-window_repitionPromo">
+                    <span class="repitionPromoBack">X</span>
+                    <h2 class="repitionPromoHeader">Вы уже вводили этот промокод!</h2>
+                </div>
+            </div>
+
+            <!-- MODAL WINDOW ACHIEVEMENTS -->
+            <div class="modal-window_achievementaSubstrate hidden">
+                <div class="modal-window_achievements">
+                    <span class="achievementsBack">X</span>
+                    <ul class="achievement_list">
+                        <li class="achievement_item">
+                            <p class="achievement_text">Набрать 200 кликов</p>
+                            <div class="achievement_band">
+                                <p class="achievement_progress">0/200</p>
+                                <p class="achievement_result">+100 кликов</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MODAL WINDOW BUY PREVIOUS UPGRADE -->
+            <div class="modal-window_buyPreviousUpgradeSubstrate hidden">
+                <div class="modal-window_buyPreviousUpgrade">
+                    <span class="buyPreviousUpgradeBack">X</span>
+                    <h2>Купите сначала предыдущий апгрейд!</h2>
                 </div>
             </div>
 
@@ -117,9 +158,11 @@
                 </li>
                 <li class="admin_item">
                     <button class="button buttonAdmin statistics">Statistics</button>
-                </li>
                 <li class="admin_item">
                     <button class="button buttonAdmin settings">Settings</button>
+                </li>
+                <li class="admin_item">
+                    <button class="button buttonAdmin achievements">Achievements</button>
                 </li>
             </ul>
         </aside>
