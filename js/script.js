@@ -12,12 +12,21 @@ window.addEventListener('DOMContentLoaded', (e) => {
           clicksForOneClick = document.querySelector('.clicks-for-one-click'),
           buyPreviousUpgradeSubstrate = document.querySelector('.modal-window_buyPreviousUpgradeSubstrate'),
           buyPreviousUpgradeBack = document.querySelector('.buyPreviousUpgradeBack'),
+          badLuckSubstrate = document.querySelector('.modal-window_badLuckSubstrate'),
+          badLuckBack = document.querySelector('.badLuckBack'),
+          badLuckSubheader = document.querySelector('.badLuckSubheader'),
           upgrades = document.querySelector('.upgrades'),
           upgrade10 = document.querySelector('.upgrade10'),
           upgrade50  = document.querySelector('.upgrade50'),
           upgrade100 = document.querySelector('.upgrade100'),
+          upgrade200 = document.querySelector('.upgrade200'),
+          upgrade500 = document.querySelector('.upgrade500'),
           asyncUpgrade25 = document.querySelector('.asyncUpgrade25'),
           asyncUpgrade50 = document.querySelector('.asyncUpgrade50'),
+          asyncUpgrade250 = document.querySelector('.asyncUpgrade250'),
+          asyncUpgrade1000 = document.querySelector('.asyncUpgrade1000'),
+          asyncUpgrade5000 = document.querySelector('.asyncUpgrade5000'),
+          asyncUpgrade25000 = document.querySelector('.asyncUpgrade25000'),
           counterSubheader = document.querySelector('.counter_subheader'),
           colorInterface = document.querySelector('.color_interface'),
           colorInterfaceButton = document.querySelector('.color_interface_button'),
@@ -27,6 +36,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
           userColor = document.querySelector('.user_color'),
           userColorButton = document.querySelector('.user_color_button'),
           wrongColor = document.querySelector('.wrongColor'),
+          wrongFormat = document.querySelector('.wrongFormat'),
           wrongForm = document.querySelector('.wrongForm'),
           buttons = document.querySelectorAll('button'),
           statistics = document.querySelector('.statistics'),
@@ -49,11 +59,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
           settingsSubstrate = document.querySelector('.modal-window_settingsSubstrate'),
           settingsBack = document.querySelector('.settingsBack'),
           settings = document.querySelector('.settings'),
+          correctPromoSubstrate = document.querySelector('.modal-window_correctPromoSubstrate'),
+          correctPromoBack = document.querySelector('.correctPromoBack'),
           achievements = document.querySelector('.achievements'),
           achievementaSubstrate = document.querySelector('.modal-window_achievementaSubstrate'),
           achievementsBack = document.querySelector('.achievementsBack'),
           upgradesSubstrate = document.querySelector('.modal-window_upgradesSubstrate'),
           upgradesBack = document.querySelector('.modal-window_upgradesBack'),
+          doubleClickEventSubstrate = document.querySelector('.modal-window_doubleClickEventSubstrate'),
+          doubleClickEventBack = document.querySelector('.doubleClickEventBack'),
           notEnoughSubstrateModalShow = document.querySelector('.notEnoughSubstrateModalShow'),
           notEnoughModalShowBack = document.querySelector('.notEnoughModalShowBack'),
           notEnoughModalShowClose = document.querySelector('.notEnoughModalShowClose'),
@@ -63,28 +77,62 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
 
     let count = 0,
+        tf = false,
         upgrade = 0,
         allClicks = 0,
         allUpgrade = 0,
-        allAsyncUpgrade = 0,
-        clicksPerMinute = 0,
-        badEventInterval = Math.round(Math.random() * (100_000 - 36_000))
+        carrotCount = 60,
+        clicksForSecond = 0, 
+        badEventInterval = Math.round(Math.random() * (1_200_000 - 36_000))
 
 // Work Zone
 
-const badEvent = (interval) => {
-    setInterval(() => {
-        quantity = (count / 100) * Math.round(Math.random() * (11 - 1))
-        count -= Math.round(quantity)
-        counter.textContent = count
-    }, interval)
-}
 
-badEvent(badEventInterval)
-// goodEvent(10000, goodEventCount())
 
-// goodEvent(goodEventInterval())
+
 // Function
+    const badEvent = (interval) => {
+        setInterval(() => {
+            quantity = (count / 100) * Math.round(Math.random() * (90 - 1))
+            count -= quantity.toFixed()
+            counter.textContent = count
+            modalWindow(badLuckSubstrate, badLuckBack)
+            badLuckSubheader.textContent = `-${quantity.toFixed()} кликов`
+        }, interval)
+    }
+
+    const doubleClicksEvent = (interval) => {
+
+        setInterval(() => {
+            modalWindow(doubleClickEventSubstrate, doubleClickEventBack)
+            
+    
+            setTimeout(() => {
+                doubleClickEventSubstrate.classList.add('hidden')
+            }, 3000)
+    
+    
+            tf = true
+            const timer = setInterval(function() {
+                if (carrotCount <= 0) {
+                  tf = false
+                  clearInterval(timer)
+                }
+                carrotCount--;
+              }, 1000);
+    
+              if (carrotCount != 0) {
+                click.addEventListener('click', () => {
+                    if (tf) {
+                        clicksForOneClick.textContent = `+${upgrade + 10}`
+                        count += 10
+                        counter.textContent = count
+                    }
+                })
+              }
+    
+            }, interval)
+    }
 
     const windowClickModalWindow = (substrateModal, substrateModal2 = substrateModal) => {
         window.addEventListener('click', e => {
@@ -94,6 +142,7 @@ badEvent(badEventInterval)
             }
         })
     }
+
     const a = (substrateClose, substrateBack, substrateModal, upgradSubstrate) => {
         
         substrateClose.addEventListener('click', () => {
@@ -130,7 +179,7 @@ badEvent(badEventInterval)
 
     const examinationUpgrade = (button, count1, number) => {
         if (count >= count1) {
-            button.setAttribute("disabled", "disabled")
+            button.classList.add('hidden')
             count -= count1
             upgrade += number
             counter.textContent = count
@@ -146,13 +195,15 @@ badEvent(badEventInterval)
         }
 
     }
-    
 
     const asyncUpgrade = (button, add, speed, count1) => {
         if (count >= count1) {
-            button.setAttribute('disabled', 'disabled')
+            // button.setAttribute('disabled', 'disabled')
+            button.classList.add('hidden')
             count -= count1
             counter.textContent = count
+            clicksForSecond += add / speed * 1000
+            counterSubheader.textContent = `Кликов в секунду: +${clicksForSecond.toFixed()}`
 
             allUpgrade++
             allUpgradeSubheader.textContent =  `Всего апгрейдов: ${allUpgrade}`
@@ -178,25 +229,40 @@ badEvent(badEventInterval)
 
     upgrade50.addEventListener('click', () => {
 
-        if (upgrade10.hasAttribute('disabled')) {examinationUpgrade(upgrade50, 50, 1)}
+        if (upgrade10.classList.contains('hidden')) {examinationUpgrade(upgrade50, 50, 1)}
         else modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
 
     })
 
     upgrade100.addEventListener('click', () => {
 
-        if (upgrade50.hasAttribute('disabled')) examinationUpgrade(upgrade100, 100, 2)
+        if (upgrade50.classList.contains('hidden')) examinationUpgrade(upgrade100, 100, 2)
+        else modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+
+    })
+
+    upgrade200.addEventListener('click', () => {
+        
+        if (upgrade100.classList.contains('hidden')) {examinationUpgrade(upgrade200, 200, 5)}
         else modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
 
     })
     
+    upgrade500.addEventListener('click', () => {
+        
+        if (upgrade200.classList.contains('hidden')) {examinationUpgrade(upgrade500, 500, 10)}
+        else modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+        
+    })
+
+
+
     asyncUpgrade25.addEventListener('click', () => {
         asyncUpgrade(asyncUpgrade25, 1, 2000, 25)
     })
 
     asyncUpgrade50.addEventListener('click', () => {
-        asyncUpgrade(asyncUpgrade50, 1, 2000, 50)
-        if (asyncUpgrade25.hasAttribute('disabled')) {asyncUpgrade(asyncUpgrade50, 1, 1000, 50)}
+        if (asyncUpgrade25.classList.contains('hidden')) {asyncUpgrade(asyncUpgrade50, 1, 1000, 50 )}
         else {
             notEnoughSubstrateModalShow.classList.add('hidden')
             modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
@@ -204,6 +270,50 @@ badEvent(badEventInterval)
         }
 
     })
+
+    asyncUpgrade250.addEventListener('click', () => {
+        if (asyncUpgrade50.classList.contains('hidden')) {asyncUpgrade(asyncUpgrade250, 2, 1000, 250 )}
+        else {
+            notEnoughSubstrateModalShow.classList.add('hidden')
+            modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+
+        }
+
+    })
+
+    asyncUpgrade1000.addEventListener('click', () => {
+        if (asyncUpgrade250.classList.contains('hidden')) {asyncUpgrade(asyncUpgrade1000, 5, 1000, 1000 )}
+        else {
+            notEnoughSubstrateModalShow.classList.add('hidden')
+            modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+
+        }
+
+    })
+
+    asyncUpgrade5000.addEventListener('click', () => {
+        if (asyncUpgrade1000.classList.contains('hidden')) {asyncUpgrade(asyncUpgrade5000, 10, 1500, 5000 )}
+        else {
+            notEnoughSubstrateModalShow.classList.add('hidden')
+            modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+
+        }
+
+    })
+
+    asyncUpgrade25000.addEventListener('click', () => {
+        if (asyncUpgrade5000.classList.contains('hidden')) {asyncUpgrade(asyncUpgrade25000, 20, 1000, 25000 )}
+        else {
+            notEnoughSubstrateModalShow.classList.add('hidden')
+            modalWindow(buyPreviousUpgradeSubstrate, buyPreviousUpgradeBack)
+
+        }
+
+    })
+
+    badEvent(badEventInterval)
+
+    doubleClicksEvent(300_000)
 
     // Admin Menu
     upgrades.addEventListener('click', () => {
@@ -215,6 +325,10 @@ badEvent(badEventInterval)
         if (e.key == 'Enter') {
             design.blur()
         }
+        userColor.value = ''
+        wrongColor.classList.add('hidden')
+        userColor.classList.remove('red_border')
+        wrongFormat.classList.add('hidden')
     })
 
     statistics.addEventListener('click', () => {
@@ -249,14 +363,15 @@ badEvent(badEventInterval)
             buttons.forEach((btn) => {
                 btn.style.backgroundColor = userColor.value
             })
+
             wrongColor.classList.add('hidden')
             userColor.classList.remove('red_border')
-        } 
+        }
         if (userColor.value.match(/#[a-f0-9]{6}\b|#[a-f0-9]{3}\b|rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$|rgba\((\s*\d+\s*,){3}[\d\.]+\)/gi) === null) {
             userColor.classList.add('red_border')
             wrongColor.classList.remove('hidden')
         }
-
+        userColor.value = ''
 
     })
 
@@ -276,7 +391,27 @@ badEvent(badEventInterval)
     })
 
     userColorButton.addEventListener('click', () => {
+    })
 
+    userColor.addEventListener('input', () => {
+    
+        if (userColor.value[0] != '#') {
+
+            wrongFormat.classList.remove('hidden')
+            wrongColor.classList.add('hidden')
+            userColor.classList.add('red_border')
+
+        } else {
+            wrongFormat.classList.add('hidden')
+            wrongColor.classList.add('hidden')
+            userColor.classList.remove('red_border')
+        }
+        if (userColor.value == '') {
+
+            wrongFormat.classList.add('hidden')
+            wrongColor.classList.add('hidden')
+            userColor.classList.remove('red_border')
+        }
     })
 
     // Promo
@@ -292,6 +427,7 @@ badEvent(badEventInterval)
                 count += 50;
                 counter.textContent = count
                 settingsSubstrate.classList.add('hidden')
+                modalWindow(correctPromoSubstrate, correctPromoBack)
             }
 
         } else if (promo.value != promocode) {
@@ -335,5 +471,3 @@ badEvent(badEventInterval)
     })
 
 })
-
-

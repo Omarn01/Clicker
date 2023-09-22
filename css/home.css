@@ -100,6 +100,13 @@ button:disabled {
           box-shadow: 1px 3px 5px 3px green;
 }
 
+.upgrades-block_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+}
+
 .admin {
   border-right: 1px solid #1C1C1C;
   height: 100%;
@@ -157,12 +164,14 @@ button:disabled {
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
+  overflow: hidden;
 }
 .upgrades-block-Async_list {
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
   gap: 10px;
 }
 
@@ -375,6 +384,7 @@ button:disabled {
   background-color: gray;
 }
 .modal-window_buyPreviousUpgradeSubstrate {
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
   z-index: 9998;
@@ -394,6 +404,102 @@ button:disabled {
   z-index: 9999;
   text-align: center;
   background-color: gray;
+}
+.modal-window_correctPromoSubstrate {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.modal-window_correctPromo {
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 5px;
+  z-index: 9999;
+  text-align: center;
+  background-color: gray;
+}
+.modal-window_doubleClickEventSubstrate {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.modal-window_doubleClickEvent {
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 5px;
+  z-index: 9999;
+  text-align: center;
+  background-color: gray;
+}
+.modal-window_badLuckSubstrate {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.modal-window_badLuck {
+  width: 500px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 5px;
+  z-index: 9999;
+  text-align: center;
+  background-color: gray;
+}
+
+.badLuckBack {
+  cursor: pointer;
+  font-size: 30px;
+  color: #d91515;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 9999;
+}
+
+.doubleClickEventBack {
+  cursor: pointer;
+  font-size: 30px;
+  color: #d91515;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 9999;
+}
+
+.correctPromoBack {
+  cursor: pointer;
+  font-size: 30px;
+  color: #d91515;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 9999;
 }
 
 .buyPreviousUpgradeBack {
@@ -506,6 +612,10 @@ button:disabled {
     width: 380px;
     height: 220px;
   }
+  .modal-window_buyPreviousUpgrade {
+    width: 380px;
+    height: 220px;
+  }
 
   .achievementsBack {
     font-size: 20px;
@@ -587,6 +697,14 @@ button:disabled {
   .modal-window_achievements {
     width: 310px;
     height: 180px;
+  }
+  .modal-window_buyPreviousUpgrade {
+    width: 320px;
+    height: 180px;
+  }
+
+  .buyPreviousUpgradeBack {
+    font-size: 20px;
   }
 
   .achievementsBack {
@@ -708,6 +826,15 @@ button:disabled {
     width: 280px;
     height: 150px;
     font-size: 12px;
+  }
+  .modal-window_buyPreviousUpgrade {
+    width: 280px;
+    height: 150px;
+    font-size: 12px;
+  }
+
+  .buyPreviousUpgradeBack {
+    font-size: 20px;
   }
 
   .achievementsBack {
